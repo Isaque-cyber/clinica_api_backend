@@ -17,6 +17,7 @@ model Usuario {
   id    Int     @id @default(autoincrement())
   email String  @unique
   nome  String?
+  senha String
 
   @@map("usuario")
 }
@@ -30,4 +31,10 @@ model Exame {
   data_exame DateTime
 
   @@map("exame")
+}
+model Token {
+  id Int @id @default(autoincrement)
+  Token  String?
+  type   normal
+  revoked expiresAt  DateTime
 }
