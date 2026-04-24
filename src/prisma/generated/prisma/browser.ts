@@ -32,3 +32,7 @@ export type Exame = Prisma.ExameModel
  * 
  */
 export type Token = Prisma.TokenModel
+/**
+ * Model Prontuario
+ * 
+ */

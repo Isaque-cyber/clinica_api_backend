@@ -51,3 +51,43 @@ model Token {
 
   @@map("token")
 }
+
+model Prontuario {
+  id                    Int       @id @default(autoincrement())
+  descricao             String
+  data                  DateTime?
+  medico_responsavel_id Int
+  paciente_id           Int
+  paciente              Paciente  @relation(fields: [paciente_id], references: [id])
+  usuario               Usuario   @relation(fields: [medico_responsavel_id], references: [id])
+
+  @@map("prontuario")
+}
+
+model Consulta {
+  id                    Int      @id @default(autoincrement())
+  motivo                String
+  data_consulta         DateTime
+  observacoes           String
+  medico_responsavel_id Int
+  paciente_id           Int
+  paciente              Paciente @relation(fields: [paciente_id], references: [id])
+
+  @@map("consulta")
+}
+
+model Paciente {
+  id              Int          @id @default(autoincrement())
+  nome            String
+  cpf             String
+  telefone        String
+  email           String
+  data_nascimento DateTime
+  sexo            String
+  responsavel     String?
+  Prontuario      Prontuario[]
+  Consulta        Consulta[]
+  Exame           Exame[]
+
+  @@map("paciente")
+}
